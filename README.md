@@ -1,39 +1,36 @@
-# Credit Card Anomaly Detection with Autoencoders
+# Deep Learning Credit Card Anomaly Detection
 
-Unsupervised anomaly detection pipeline implemented using TensorFlow/Keras autoencoders.
+An anomaly detection project based on deep autoencoders implemented with TensorFlow/Keras.
 
 ## Technologies
 
 * Python 3.10
 * TensorFlow / Keras
 * Scikit-Learn
-* NumPy
 * Pandas
+* NumPy
 * Matplotlib
 
 ## Dataset
 
-Credit card transaction dataset containing:
+The project uses a credit card transaction dataset containing normal and anomalous transactions.
 
-* Normal transactions
-* Fraudulent transactions
-
-Target column:
+Target variable:
 
 ```text
 Class
 ```
 
-* `0` = Normal Transaction
-* `1` = Fraudulent Transaction
+* 0 — Normal Transaction
+* 1 — Anomalous Transaction
 
-## Implemented
+## Features
 
 ### Data Preprocessing
 
-* Feature standardization using `StandardScaler`
-* Separation of normal and anomalous transactions
-* Training on non-fraudulent transactions only
+* Dataset loading using Pandas
+* Feature standardization using StandardScaler
+* Training set creation using only normal transactions
 
 ### Autoencoder Architecture
 
@@ -41,10 +38,10 @@ Encoder:
 
 ```text
 Input (29)
- ├─ Dense(32, ReLU)
- ├─ BatchNormalization
- ├─ Dropout(0.2)
- └─ Dense(14, ReLU)
+ ├── Dense(32, ReLU)
+ ├── BatchNormalization
+ ├── Dropout(0.2)
+ └── Dense(14, ReLU)
 ```
 
 Decoder:
@@ -58,47 +55,29 @@ Dense(29, Linear)
 
 ### Model Training
 
-* Optimizer: Adam
-* Learning Rate: 0.001
-* Loss Function: Mean Squared Error (MSE)
-* Validation Split: 10%
-* Batch Size: 256
-* Epochs: 20
+* Adam Optimizer
+* Mean Squared Error (MSE) Loss
+* Validation Split
+* Mini-batch Training
 
 ### Anomaly Detection
 
-* Transaction reconstruction using autoencoder
+* Transaction reconstruction
 * Reconstruction error calculation (MSE)
-* 95th percentile thresholding
+* 95th percentile threshold selection
 * Binary anomaly classification
 
-```python
-threshold = np.percentile(
-    mse[y == 0],
-    95
-)
-```
-
 ### Model Evaluation
-
-Implemented metrics:
 
 * ROC-AUC Score
 * Classification Report
 * ROC Curve
 
-## Visualizations
-
-### ROC Curve
-
-![ROC Curve](figures/roc_curve.png)
-
-The ROC curve illustrates the trade-off between True Positive Rate and False Positive Rate across different anomaly score thresholds.
-
 ## Project Structure
 
 ```text
-.
+DeepLearningCreditCardAnomalyDetection/
+│
 ├── data/
 │   └── creditcard.csv
 │
@@ -106,7 +85,7 @@ The ROC curve illustrates the trade-off between True Positive Rate and False Pos
 │   └── roc_curve.png
 │
 ├── src/
-│   └── anomaly_detection.py
+│   └── credit_card_anomaly_detection.py
 │
 ├── requirements.txt
 └── README.md
@@ -115,9 +94,9 @@ The ROC curve illustrates the trade-off between True Positive Rate and False Pos
 ## Installation
 
 ```bash
-git clone https://github.com/karolinasniezek/credit-card-anomaly-detection.git
+git clone https://github.com/karolinasniezek/deep-learning-credit-card-anomaly-detection.git
 
-cd credit-card-anomaly-detection
+cd DeepLearningCreditCardAnomalyDetection
 
 python3.10 -m venv .venv
 
@@ -130,5 +109,13 @@ pip install -r requirements.txt
 ## Run
 
 ```bash
-python src/anomaly_detection.py
+python src/credit_card_anomaly_detection.py
 ```
+
+## Results
+
+### ROC Curve
+
+![ROC Curve](figures/roc_curve.png)
+
+The ROC curve visualizes the relationship between the True Positive Rate and False Positive Rate across different anomaly detection thresholds.
