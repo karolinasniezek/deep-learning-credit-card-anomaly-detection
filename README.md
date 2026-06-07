@@ -13,16 +13,22 @@ An anomaly detection project based on deep autoencoders implemented with TensorF
 
 ## Dataset
 
-The project uses a credit card transaction dataset containing normal and anomalous transactions.
+The project uses the Credit Card Fraud Detection dataset.
 
-Target variable:
+Features:
 
-```text
-Class
-```
+- Time
+- V1-V28 (PCA-transformed and anonymized features)
+- Amount
 
-* 0 — Normal Transaction
-* 1 — Anomalous Transaction
+Target:
+
+- Class
+
+Labels:
+
+- 0 — Normal Transaction
+- 1 — Fraudulent Transaction
 
 ## Features
 
